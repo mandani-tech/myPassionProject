@@ -1,2 +1,2 @@
 # myPassionProject
-Wine Shop Application for E-COmmerce
+Wine Shop Application for E-Commerce
