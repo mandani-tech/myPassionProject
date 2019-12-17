@@ -1,0 +1,17 @@
+{% extends 'quenchApp/index.html' %}
+
+
+
+{% block content %}
+
+<h1>Login User</h1>
+<form  method="POST">
+
+    {{ loginform.as_p }}
+    {% csrf_token %}
+    <button><a href="{% url 'index' %}"></a>LOGIN</button>
+    <button><a href="{% url 'new_user' %}">Create My Login Account</button>
+
+</form>
+{% endblock %}
+

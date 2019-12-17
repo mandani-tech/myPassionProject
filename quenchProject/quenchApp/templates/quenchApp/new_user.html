@@ -1,0 +1,20 @@
+{% extends 'quenchApp/index.html' %}
+
+{% block header   %}
+
+Sign Up!
+
+{% endblock %}
+
+
+{% block content %}
+{# This will show the form errors that are automatically created #}
+{{ errors }}
+
+<form method="post">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button>Create My Login Account</button>
+</form>
+
+{% endblock %}

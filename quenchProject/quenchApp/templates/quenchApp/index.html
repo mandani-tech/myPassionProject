@@ -1,55 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Wikipedia</title>
+    <title>QUENCH</title>
     {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'quenchApp/index.css' %}">
 </head>
 
-<body id="container">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    </nav>
+<body>
+<div>
+    <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>
+    <h4><a  href="/log_me_out/">Sign Out</a></h4>
+
+</div>
+<!-- Navigation Bar-->
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Quench Wine & Spirits</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WINE <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">RED WINE</a></li>
+                        <li><a href="#">WHITE WINE</a></li>
+                        <li><a href="#">SPARKLING WINE</a></li>
+                        <li><a href="#">ROSÉ WINE</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SPIRITS <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">WHISKEY</a></li>
+                        <li><a href="#">VODKA</a></li>
+                        <li><a href="#">RUM</a></li>
+                        <li><a href="#">GIN</a></li>
+                        <li><a href="#">TEQUILA</a></li>
+                        <li><a href="#">COGNAQ</a></li>
+                        <li><a href="#">LIQUERS & CORDIALS</a></li>
+                        <li><a href="#">APERTIFS & VERMOUTH</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BEER <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">CRAFT</a></li>
+                        <li><a href="#">IMPORTED</a></li>
+                        <li><a href="#">DOMESTIC</a></li>
+                        <li><a href="#">HIGH GRAVITY</a></li>
+
+
+                    </ul>
+                </li>
+
+
+
+                <li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FOOD <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">CHEESE</a></li>
+                        <li><a href="#">CHOCOLATE</a></li>
+                        <li><a href="#">MIXERS</a></li>
+                        <li><a href="#">MORE</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ACCESSORIES <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">GLASSWARE</a></li>
+                        <li><a href="#">CORKSCREWS</a></li>
+                        <li><a href="#">FLASKS</a></li>
+                        <li><a href="#">MORE</a></li>
+                    </ul>
+                </li>
+                <li>
+
+
+                <form id="searchbar" action="#" method="get">
+                    <label  for="search1"> </label>
+                    <input id="search1" type="text"  placeholder="Search" name="q" >
+                    <img src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px">
+                </form>
+                </li>
+
+
+            </ul>
+        </div>
+</nav>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer id="footer" class="jumbotron">This application is developed by Hamida Mandani</footer>
-
-{# JavaScript for Bootstrap #}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+{% block content %}
+{% endblock %}
 
 </body>
 </html>
