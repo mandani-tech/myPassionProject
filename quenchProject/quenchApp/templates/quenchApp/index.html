@@ -6,15 +6,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'quenchApp/index.css' %}">
+
 </head>
 
 <body>
 <div>
     <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>
+    <img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50">
     <h4><a  href="/log_me_out/">Sign Out</a></h4>
+    <form id="searchbar" action="#" method="get">
+        <label  for="search1"> </label>
+        <input id="search1" type="text"  placeholder="Search" name="q" >
+        <img src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px">
+    </form><br>
 
 </div>
 <!-- Navigation Bar-->
@@ -27,16 +32,45 @@
                 <li class="active"><a href="/">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WINE <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">RED WINE</a></li>
-                        <li><a href="#">WHITE WINE</a></li>
-                        <li><a href="#">SPARKLING WINE</a></li>
+                        <li class="dropdown-submenu"><a class="test" tabindex="-1" href="#">RED WINE<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">CABERNET SAUVIGNON</a></li>
+                                <li><a tabindex="-1" href="#">PINOT NOIR</a></li>
+                                <li><a tabindex="-1" href="#">MERLOT</a></li>
+                                <li><a tabindex="-1" href="#">SYRAH</a></li>
+                                <li><a tabindex="-1" href="#">ZINFANDEL</a></li>
+                                <li><a tabindex="-1" href="#">SANGIOVESE</a></li>
+                                <li><a tabindex="-1" href="#">MALBEC</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">ROSÉ WINE</a></li>
+                        <li><a href="#">SPARKLING WINE</a></li>
+                        <li class="dropdown-submenu"><a class="test" tabindex="-1" href="#">WHITE WINE<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">CHARDONNAY</a></li>
+                                <li><a tabindex="-1" href="#">SAUVIGNON BLANC</a></li>
+                                <li><a tabindex="-1" href="#">PINOT GRIGIO</a></li>
+                                <li><a tabindex="-1" href="#">RIESLING</a></li>
+                                <li><a tabindex="-1" href="#">MOSCATO BIANCO</a></li>
+                            </ul>
+                        </li>
+
+
 
                     </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SPIRITS <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">WHISKEY</a></li>
+                        <li class="dropdown-submenu"><a class="test" tabindex="-1" href="#">WHISKEY <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">BOURBON</a></li>
+                                <li><a tabindex="-1" href="#">RYE</a></li>
+                                <li><a tabindex="-1" href="#">SCOTCH</a></li>
+                                <li><a tabindex="-1" href="#">SINGLE BARREL</a></li>
+                                <li><a tabindex="-1" href="#">IRISH WHISKEY</a></li>
+                                <li><a tabindex="-1" href="#">CANADIAN WHISKEY</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">VODKA</a></li>
                         <li><a href="#">RUM</a></li>
                         <li><a href="#">GIN</a></li>
@@ -83,11 +117,7 @@
                 <li>
 
 
-                <form id="searchbar" action="#" method="get">
-                    <label  for="search1"> </label>
-                    <input id="search1" type="text"  placeholder="Search" name="q" >
-                    <img src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px">
-                </form>
+
                 </li>
 
 
@@ -97,9 +127,15 @@
 
 
 
-
 {% block content %}
 {% endblock %}
+<img id="mainImg" src="../../static/quenchApp/Santa.jpeg" height="1940" width="1840"/>
 
+
+<footer id="footer" class="jumbotron">This application is developed by Hamida Mandani</footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'quenchApp/index.js' %}"></script>
 </html>

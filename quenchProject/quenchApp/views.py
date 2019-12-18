@@ -70,7 +70,7 @@ def login_my_user(request):
 
             "loginform": NewUserForm,
        }
-       return render(request, "QuenchApp/login_my_user.html", context)
+       return render(request, "quenchApp/login_my_user.html", context)
 
 
 

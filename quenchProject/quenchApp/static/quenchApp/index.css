@@ -2,9 +2,18 @@ html{
     background: lightgrey;
 }
 #searchbar{
-    margin-top: 7%;
+    margin-top: 1%;
 }
 
-#demo{
-    background: darksalmon;
+#footer{
+   padding: 1%;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
 }
