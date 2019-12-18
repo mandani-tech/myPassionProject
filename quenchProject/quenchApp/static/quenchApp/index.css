@@ -30,7 +30,25 @@ nav{
 }
 
 #footer{
-   padding: 1%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1%;
+
+}
+
+#hours{
+    grid-column: 4;
+}
+
+#copyRight
+{
+    grid-column: 1/5;
+    text-align: center;
+    margin: 5%;
+}
+
+#address{
+    grid-column: 1;
 }
 .dropdown-submenu {
     position: relative;

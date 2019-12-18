@@ -6,6 +6,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../static/quenchApp/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'quenchApp/index.css' %}">
 
@@ -22,7 +23,7 @@
     <div id="topRight">
 <!--        <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>-->
         <h4><a  href="/log_me_out/">Sign Out</a></h4>
-        <a href="#"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
+        <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
         <form class="searchbar" action="#" method="get">
             <label  for="search1"> </label>
             <input class="input-lg" id="search1" type="text"  placeholder="Search" name="q"  >
@@ -35,12 +36,11 @@
         <div id="topRight2">
             <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>
                     <h4><a  href="/new_user/">Not already a member? Sign Up</a></h4>
-            <a href="#"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
+            <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
             <form class="searchbar" action="#" method="get">
                 <label  for="search2"> </label>
                 <input  id="search2" type="text"  placeholder="Search" name="q"  >
                 <a href="#"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
-
             </form>
     </div>
     {% endif %}
@@ -160,44 +160,60 @@
 
 
 
+<footer id="footer" class="jumbotron">
+    <div>
+       <h1>QUENCH <h2>- Wine & Spirits -</h2><h2  id="address">99 South Second Street Memphis TN 38103 <h2>Phone: 901.207.1168</h2></h2></h1>
+    </div>
+
+    <table>
+        <tr><th><h2>Wine</h2></th>
+            <th><h2>Spirits</h2></th>
+            <th><h2>Beer</h2></th>
+        </tr>
+
+        <tr><td><h4>Red Wine</h4></td>
+            <td><h4>Whiskey</h4></td>
+            <td><h4>Craft</h4></td>
+        </tr>
+
+        <tr><td><h4>White Wine</h4></td>
+            <td><h4>Vodka</h4></td>
+            <td><h4>Imported</h4></td>
+        </tr>
+
+        <tr><td><h4>Sparkling Wine</h4></td>
+            <td><h4>Vodka</h4></td>
+            <td><h4>Domestic</h4></td>
+        </tr>
 
 
 
+    </table>
+
+    <div id="hours">
+        <h2> STORE HOURS</h2>
+        <p>______________________</p>
+        <p>Monday-Thursday</p>
+        <p>11am-11pm</p>
+        <p>Friday-Saturday</p>
+        <p>10am-11pm</p>
+        <p>Sunday</p>
+        <p>12pm-8pm</p>
+        <p>______________________</p>
+    </div>
+
+    <p id="copyRight">© copyright 2019 Quench Wine & Spirits 99 South Second Street, Memphis TN 38103  United States
+    </p>
 
 
+</footer>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer id="footer" class="jumbotron">This application is developed by Hamida Mandani</footer>
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{% static 'quenchApp/index.js' %}"></script>
+
 </html>

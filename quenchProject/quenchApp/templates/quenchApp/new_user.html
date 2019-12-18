@@ -10,11 +10,12 @@ Sign Up!
 {% block content %}
 {# This will show the form errors that are automatically created #}
 {{ errors }}
-
+<div id="newUserForm">
 <form method="post">
     {{form.as_p}}
     {% csrf_token %}
     <button>Create My Login Account</button>
 </form>
+</div>
 
 {% endblock %}

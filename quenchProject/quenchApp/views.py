@@ -12,8 +12,13 @@ from django.contrib.auth import login, authenticate, logout
 def index(request):
     return render(request, 'quenchApp/index.html')
 
+
 def home(request):
         return render(request, 'quenchApp/home.html')
+
+
+def my_cart(request):
+        return render(request, 'quenchApp/my_cart.html')
 
 
 
