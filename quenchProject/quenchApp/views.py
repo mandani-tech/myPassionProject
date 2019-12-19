@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import Sign_Up_UserForm, Sign_In_UserForm
 from django.contrib.auth.models import User
+from .models import Cart
 from django.contrib.auth import login, authenticate, logout
 
 def index(request):
@@ -14,11 +15,40 @@ def index(request):
 
 
 def home(request):
+#         print(request.session.get("first_name","unknown"))
         return render(request, 'quenchApp/home.html')
 
 
+#___________________________________________Shopping cart_____________________________
+def cart_create(user=None):
+    cart_obj=Cart.objects.create(user=None)
+    print('New Cart ID created')
+    return cart_obj
+
+
 def my_cart(request):
-        return render(request, 'quenchApp/my_cart.html')
+    request.session['cart_id'] ="12"
+    cart_id = request.session.get("cart_id", None)
+    if cart_id is None:
+        cart_obj=cart_create()
+        request.session['cart_id'] = cart_obj.id
+
+    else:
+        qs=Cart.objects.filter(id=cart_id) #qs is the query set variable
+        if qs.count() ==1:
+            print('Cart ID exists')
+            print(cart_id)
+            cart_obj = qs.first()
+        else:
+
+            cart_obj = cart_create()
+            request.session['cart_id'] =cart_obj.id
+    return render(request, 'quenchApp/my_cart.html',{})
+
+
+
+
+
 
 
 
