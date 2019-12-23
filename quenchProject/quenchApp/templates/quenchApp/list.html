@@ -1,0 +1,35 @@
+{% extends 'quenchApp/index.html' %}
+
+
+{% block content %}
+
+
+{%  for obj in object_list %}
+
+<table style="margin: 1%">
+
+    <tr>
+        <td style="width: 35%">
+            <a href=""><h3>{{ obj.itemName }}</h3></a>
+        </td>
+
+        <td>
+            <h3>Price: ${{ obj.price }}</h3>
+        </td>
+        <td style="width: 50%">
+            <h4> <h3>Description:</h3> {{ obj.description }}</h4>
+        </td>
+    </tr>
+
+
+
+</table>
+
+
+
+{% endfor %}
+
+{% endblock %}
+
+
+

@@ -4,10 +4,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.shortcuts import render, redirect, get_object_or_404
 from .forms import Sign_Up_UserForm, Sign_In_UserForm
 from django.contrib.auth.models import User
-from .models import Cart
+from .models import Cart, Product
+
 from django.contrib.auth import login, authenticate, logout
 
 def index(request):
@@ -17,6 +17,54 @@ def index(request):
 def home(request):
 #         print(request.session.get("first_name","unknown"))
         return render(request, 'quenchApp/home.html')
+
+
+#______________________________________Product Views_____________________
+
+def product_list_view(request):
+    queryset =Product.objects.all()
+    context={
+    'object_list': queryset,
+
+    }
+    return render (request,"quenchApp/list.html", context)
+
+
+def product_detail_view(request, pk):
+#     instance = Product.objects.filter( pk = pk )
+    instance = get_object_or_404(Product, pk=pk)
+    context={
+    'object': instance,
+    'pk': pk
+
+    }
+    return render (request,"quenchApp/detail.html", context)
+
+
+# def product_detail_view(request,pk):
+#     instanceOfProduct = Product.objects.get(pk=pk)
+#
+#     context = {
+#         'object': instanceOfProduct,
+#         'pk': request.user.pk
+#     }
+#     return render(request,'wikiApp/details.html',context)
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #___________________________________________Shopping cart_____________________________
@@ -40,10 +88,19 @@ def my_cart(request):
             print(cart_id)
             cart_obj = qs.first()
         else:
-
             cart_obj = cart_create()
             request.session['cart_id'] =cart_obj.id
     return render(request, 'quenchApp/my_cart.html',{})
+
+
+
+
+def cart_update(request):
+    product_id =1
+    product_obj = Product.objects.get(id=product_id)
+    cart_obj ,new_obj = Cart.objects.new_or_get(request)
+    cart_obj.products.add(obj)#cart_obj.products.add(product_id)
+    return redirect ("my_cart")
 
 
 

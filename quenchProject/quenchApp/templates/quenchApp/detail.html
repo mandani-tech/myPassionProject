@@ -1,0 +1,42 @@
+{% extends 'quenchApp/index.html' %}
+{% block content %}
+
+<h1>{{ object.itemName }}</h1>
+
+
+
+
+
+
+
+<table style="margin: 1%">
+
+    <tr>
+        <td>
+            {% if object.image != '' %}
+
+            <img src="{{object.image.url}}" alt="img" /><br/>
+
+            {% endif %}
+        </td>
+
+        <td>
+            <h2>Price: ${{ object.price }}</h2>
+        </td>
+
+
+        <td>
+            <h2>Varietal: {{ object.dept }}</h2>
+        </td>
+
+
+        <td style="width: 40%">
+            <h2> <h3>Description:</h3> {{ object.description }}</h2>
+        </td>
+    </tr>
+
+
+
+</table>
+
+{% endblock %}
