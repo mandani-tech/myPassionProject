@@ -9,13 +9,25 @@
 <table style="margin: 1%">
 
     <tr>
-        <td style="width: 35%">
-            <a href=""><h3>{{ obj.itemName }}</h3></a>
+        <td style="width: 25%">
+
+            <a href="{% url 'detail' obj.pk %}"><h3>{{ obj.itemName }}</h3></a><br/><br>
+
+
         </td>
 
         <td>
             <h3>Price: ${{ obj.price }}</h3>
         </td>
+        <td>
+            {% if object.image != '' %}
+
+            <img src="{{obj.image.url}}" alt="img" width="45" /><br/>
+
+            {% endif %}
+        </td>
+
+
         <td style="width: 50%">
             <h4> <h3>Description:</h3> {{ obj.description }}</h4>
         </td>

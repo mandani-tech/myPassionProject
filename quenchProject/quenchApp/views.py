@@ -41,26 +41,6 @@ def product_detail_view(request, pk):
     return render (request,"quenchApp/detail.html", context)
 
 
-# def product_detail_view(request,pk):
-#     instanceOfProduct = Product.objects.get(pk=pk)
-#
-#     context = {
-#         'object': instanceOfProduct,
-#         'pk': request.user.pk
-#     }
-#     return render(request,'wikiApp/details.html',context)
-#
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -68,38 +48,55 @@ def product_detail_view(request, pk):
 
 
 #___________________________________________Shopping cart_____________________________
-def cart_create(user=None):
-    cart_obj=Cart.objects.create(user=None)
-    print('New Cart ID created')
-    return cart_obj
+
+#
+#
+# def cart_create(user=None):
+#     cart_obj=Cart.objects.create(user=None)
+#     print('New Cart ID created')
+#     return cart_obj
+
 
 
 def my_cart(request):
-    request.session['cart_id'] ="12"
-    cart_id = request.session.get("cart_id", None)
-    if cart_id is None:
-        cart_obj=cart_create()
-        request.session['cart_id'] = cart_obj.id
 
+    cart_id = request.session.get("cart_id", None)
+    qs = Cart.objects.filter(id=cart_id)
+    if qs.count() == 1:
+        print('Cart ID Exits')
+        print(cart_id)
+        cart_obj = qs.first()
+        if request.user.is_authenticated and cart_obj.user is None:
+            cart_obj.user = request.user
+            cart_obj.save()
     else:
-        qs=Cart.objects.filter(id=cart_id) #qs is the query set variable
-        if qs.count() ==1:
-            print('Cart ID exists')
+            cart_obj = Cart.objects.new(user=request.user)
+            request.session['cart_id'] = cart_obj.id
             print(cart_id)
-            cart_obj = qs.first()
-        else:
-            cart_obj = cart_create()
-            request.session['cart_id'] =cart_obj.id
-    return render(request, 'quenchApp/my_cart.html',{})
+
+    return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
 
 
 
 def cart_update(request):
-    product_id =1
-    product_obj = Product.objects.get(id=product_id)
-    cart_obj ,new_obj = Cart.objects.new_or_get(request)
-    cart_obj.products.add(obj)#cart_obj.products.add(product_id)
+
+    product_id = request.POST.get('product_id')
+    print(product_id)
+    if product_id is not None:
+        try:
+            product_obj = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            print("Show message to user, product is gone")
+            return redirect ("my_cart")
+        cart_obj  = Cart.objects.new(request)
+        if product_obj in cart_obj.products.all():
+            cart_obj.products.remove(product_obj)
+        else:
+            cart_obj.products.add(product_obj)
+
+
+#     cart_obj.products.add(obj)#cart_obj.products.add(product_id)
     return redirect ("my_cart")
 
 
@@ -109,7 +106,7 @@ def cart_update(request):
 
 
 
-# Creating a sign up user
+#________________________________________________ Creating a sign up user
 def new_user(request):
     if request.method == "POST":
         newUser = Sign_Up_UserForm(request.POST)

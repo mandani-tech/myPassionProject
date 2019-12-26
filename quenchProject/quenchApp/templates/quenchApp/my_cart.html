@@ -2,5 +2,23 @@
 
 
 {% block content %}
+
 <h1>MY Cart</h1>
+
+<button style="margin: 1%"><h3>Continue Shopping</h3></button>
+<button><h3>Checkout Now</h3></button>
+
+
+{% if cart.products.exist %}
+
+<div>
+    {{ cart }}
+</div>
+{% else%}
+<p class="lead">Cart is Empty</p>
+
+{% endif %}
+
+
+
 {% endblock %}

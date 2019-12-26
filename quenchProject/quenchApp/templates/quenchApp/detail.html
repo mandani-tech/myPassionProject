@@ -15,7 +15,7 @@
         <td>
             {% if object.image != '' %}
 
-            <img src="{{object.image.url}}" alt="img" /><br/>
+            <img src="{{object.image.url}}" alt="img" width="100"/><br/>
 
             {% endif %}
         </td>
@@ -30,12 +30,22 @@
         </td>
 
 
+
+
+
+        {% if object in cart.product.all   %}
+
+        In cart  <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Remove from Cart</h5></button></a></td>
+        {% else %}
+        <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Add to Cart</h5></button></a></td>
+        {% endif %}
+
+
         <td style="width: 40%">
             <h2> <h3>Description:</h3> {{ object.description }}</h2>
         </td>
+
     </tr>
-
-
 
 </table>
 
