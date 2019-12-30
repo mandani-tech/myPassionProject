@@ -21,14 +21,19 @@
     </div>
     {% if user.is_authenticated %} {#________________________Logged In User Authentication _______________________#}
     <div id="topRight">
-<!--        <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>-->
-        <h4><a  href="/log_me_out/">Sign Out</a></h4>
+<!--        <h4>Hello, <a  href="/login_my_user/">Sign in</a></h4>-->
+        <h4 class="text-capitalize"> Hi, {{ request.user }}
+        <a  href="/log_me_out/">Sign Out</a></h4>
         <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
-        <form class="searchbar" action="#" method="get">
+
+        <form class="searchbar" action="/search_results/" method="get">
             <label  for="search1"> </label>
             <input class="input-lg" id="search1" type="text"  placeholder="Search" name="q"  >
-            <a href="#"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
+            <a href="/search_result/"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
         </form>
+
+
+
     </div>
 
     {% else %}
@@ -37,10 +42,10 @@
             <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>
                     <h4><a  href="/new_user/">Not already a member? Sign Up</a></h4>
 <!--            <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>-->
-            <form class="searchbar" action="#" method="get">
+            <form class="searchbar" action="/search_results" method="get">
                 <label  for="search2"> </label>
-                <input  id="search2" type="text"  placeholder="Search" name="q"  >
-                <a href="#"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
+                <input class="input-lg" id="search2" type="text"  placeholder="Search" name="q"  >
+                <a href="/search_result"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
             </form>
     </div>
     {% endif %}

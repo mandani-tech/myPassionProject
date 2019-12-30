@@ -3,22 +3,46 @@
 
 {% block content %}
 
-<h1>MY Cart</h1>
+<h1 style="margin: 1%">My Cart</h1>
 
-<button style="margin: 1%"><h3>Continue Shopping</h3></button>
-<button><h3>Checkout Now</h3></button>
+<button style="margin: 1%"><h4>Continue Shopping</h4></button>
+<button><h4>Checkout Now</h4></button>
 
 
-{% if cart.products.exist %}
+{% if cart.products is not None %}
+<h3 style="margin: 1%">Cart ID :{{ cart.id }}</h3>
+<h3 class="text-capitalize" style="margin: 1%"> Hi, {{ cart.user }}</h3>
 
-<div>
-    {{ cart }}
+
+<div class='col-sm-offset-2 '>
+<table class="table" style="margin: 1%">
+<thead>
+<th>Item</th>
+<th>Price</th>
+</thead>
+<tfoot>
+<tr>
+<td></td>
+<td><h3 style="margin: 1%">Total: ${{ cart.total }}</h3></td>
+</tr>
+</tfoot>
+{% for product in cart.products.all %}
+<tr><td style="width: 65%"><a href="{% url 'detail' product.pk %}"><h3>{{ product.itemName }}</h3></a></td>
+
+<td style="width: 15%"><h3>Price: ${{ product.price }}</h3></td>
+<td style="width: 15%">{% if object.image != '' %}<img src="{{ product.image.url }}" alt="img" width="15"/><br/>{% endif %}</td></tr>
+
+    {% endfor %}
+
+</table>
 </div>
+
+
+
+
 {% else%}
-<p class="lead">Cart is Empty</p>
-
+<p style="margin: 1%" class="lead">Cart is Empty</p>
 {% endif %}
-
 
 
 {% endblock %}

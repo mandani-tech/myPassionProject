@@ -30,9 +30,30 @@ def product_list_view(request):
     return render (request,"quenchApp/list.html", context)
 
 
+#
+# class ProductDetailView():
+# #     queryset = Product.objects.all()
+#     template_name = "quenchApp/detail.html"
+
+#     def get_context_data(self,*args,**kwargs):
+#         context =super(ProductDetailView, self).get_context_data(*args,**kwargs)
+#         print(context)
+#         return (context)
+#
+#     def get_object(self,*args,**kwargs):
+#         request = self.request
+#         pk= self.kwargs.get(pk)
+#         instance = Product.objects.get(pk)
+#         if instance is None:
+#             raise Http404("Product doesn't Exits")
+#         return instance
+
 def product_detail_view(request, pk):
-#     instance = Product.objects.filter( pk = pk )
+#
     instance = get_object_or_404(Product, pk=pk)
+#     instance = Product.objects.get(pk)
+#     if instance is None:
+#                 raise Http404("Product doesn't Exits")
     context={
     'object': instance,
     'pk': pk
@@ -43,6 +64,22 @@ def product_detail_view(request, pk):
 
 
 
+
+
+
+
+
+
+def search_results(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        print(query)
+    context = {
+        'list': Product.objects.filter(Q(itemName__contains= query ) | Q(dept__contains = query)),
+
+    }
+
+    return render(request,'quenchApp/search_results.html',context)
 
 
 
@@ -59,20 +96,25 @@ def product_detail_view(request, pk):
 
 
 def my_cart(request):
-
-    cart_id = request.session.get("cart_id", None)
-    qs = Cart.objects.filter(id=cart_id)
-    if qs.count() == 1:
-        print('Cart ID Exits')
-        print(cart_id)
-        cart_obj = qs.first()
+#
+#     del request.session['cart_id']
+    cart_id = request.session.get("cart_id", None) #_______________________ get the current cart_id  or set it to None .
+    qs = Cart.objects.filter(id=cart_id) #__________________________________query set or instantiate  Cart Model  using the filter for this session
+    if qs.count() == 1: #___________________________________________________ when the cart_obj is created this is the first row in the table and its count will be equal to 1
+        print (request.user)
+        print('Cart ID Exits') #____________________________________________ if user clicks the my cart again the cart id already is existing for this session
+        print(cart_id) # _____________________________________________________console will print this cart id for this session
+        cart_obj = qs.first() # ______________________________________________cart_obj will be equal to the first row in the table and we will ignore any other rows i Cart table
         if request.user.is_authenticated and cart_obj.user is None:
-            cart_obj.user = request.user
-            cart_obj.save()
+            print (request.user)
+            cart_obj.user = request.user # ____________________________________associate the cart with the logged in user
+            cart_obj.save() # _________________________________________________save new cart object
+            print(cart_id, cart_obj)
     else:
-            cart_obj = Cart.objects.new(user=request.user)
-            request.session['cart_id'] = cart_obj.id
+            cart_obj = Cart.objects.new(user=request.user) # __________________creating new cart object for the current user
+            request.session['cart_id'] = cart_obj.id #_________________________Associate current session with the users cart for logged in user
             print(cart_id)
+
 
     return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
@@ -96,7 +138,7 @@ def cart_update(request):
             cart_obj.products.add(product_obj)
 
 
-#     cart_obj.products.add(obj)#cart_obj.products.add(product_id)
+#               cart_obj.products.add(obj)#cart_obj.products.add(product_id)
     return redirect ("my_cart")
 
 

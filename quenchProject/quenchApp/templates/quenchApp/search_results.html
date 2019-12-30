@@ -3,10 +3,11 @@
 
 {% block content %}
 
+<h2 style="margin: 1%">Search Results</h2>
+{%  for obj in list %}
 
-{%  for obj in object_list %}
 
-<table class="table" style="margin: 1%">
+<table style="margin: 1%">
 
     <tr>
         <td style="width: 25%">
@@ -41,7 +42,5 @@
 
 {% endfor %}
 
+
 {% endblock %}
-
-
-
