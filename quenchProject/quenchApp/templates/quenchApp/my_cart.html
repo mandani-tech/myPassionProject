@@ -9,7 +9,7 @@
 <button><h4>Checkout Now</h4></button>
 
 
-{% if cart.products is not None %}
+{% if cart.products is not Nonefg %}
 <h3 style="margin: 1%">Cart ID :{{ cart.id }}</h3>
 <h3 class="text-capitalize" style="margin: 1%"> Hi, {{ cart.user }}</h3>
 
@@ -40,8 +40,10 @@
 
 
 
-{% else%}
+{% else %}
+
 <p style="margin: 1%" class="lead">Cart is Empty</p>
+
 {% endif %}
 
 

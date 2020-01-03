@@ -9,7 +9,7 @@
 
 
 
-<table class="table" style="margin: 1%">
+<table class="table" style="margin: 1% padding: 5%">
 
     <tr>
         <td>
@@ -31,15 +31,35 @@
 
 
 
+        <td>
+            <form action="{% url 'cart_update'  %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{object.id}}">
+                {% if product in cart.products.all %}
+
+                <h3><button class="btn-danger">Remove</button></h3>
+                {% else %}
+                <h3><button class="btn-danger">Add to cart</button></h3>
+
+                {% endif %}
+            </form>
+        </td>
 
 
-        {% if object in cart.product.all   %}
 
-        In cart  <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Remove from Cart</h5></button></a></td>
-        {% else %}
-        <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Add to Cart</h5></button></a></td>
-        {% endif %}
 
+
+
+
+<!--    <td>-->
+
+<!--        {% if object in cart.product.all   %}-->
+
+<!--        In cart  <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Remove from Cart</h5></button></a></td>-->
+<!--        {% else %}-->
+<!--        <td><a href="{% url 'cart_update'  %}"><button class="button btn-danger"><h5>Add to Cart</h5></button></a></td>-->
+<!--        {% endif %}-->
+    </td>
 
         <td style="width: 40%">
             <h2> <h3>Description:</h3> {{ object.description }}</h2>

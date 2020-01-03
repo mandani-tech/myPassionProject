@@ -1,6 +1,5 @@
 from django.db import models
 from django.forms import ModelForm
-
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.utils import timezone
@@ -36,14 +35,16 @@ class Product(models.Model):
 
 
 class CartManager(models.Manager):
-    def new(self, user=None):
+    def get_user_obj():
+        return user_obj
+
+    def new(self,request,user=None,):
         print(user)
         user_obj = None
         if user is not None:
-            if user.is_authenticated:
+            if request.user.is_authenticated:
                 user_obj = user
         return self.model.objects.create(user=user_obj)
-
 
 
 

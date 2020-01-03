@@ -3,6 +3,64 @@
 
 {% block content %}
 
-<img id="mainImg" src="../../static/quenchApp/Santa.jpeg" height="1940" width="1840"/>
+<!--<img id="mainImg" src="../../static/quenchApp/logo_large-01-01.png" height="440" width="440"/>-->
+<!--<img id="mainImg3" src="../../static/quenchApp/Josh.jpg" height="640" width="210"/>-->
+<!--<img id="mainImg2" src="../../static/quenchApp/NewYear.jpeg" height="640" width="840"/>-->
+<!--<div id="slideshow-container">-->
+<!--<div id="slide1" class="w3-content w3-section" style="max-width:500px">-->
+
+
+<!--    <img class="mySlides1 w3-animate-fading" src="../../static/quenchApp/QuenchInside.jpg" width="1600" height="700">-->
+<!--    <img class="mySlides1 w3-animate-fading" src="../../static/quenchApp/NewYear.jpeg" width="1600" height="700">-->
+<!--    <img class="mySlides1 w3-animate-fading" src="../../static/quenchApp/Santa.jpeg" width="1600" height="700">-->
+<!--    <img class="mySlides1 w3-animate-fading" src="../../static/quenchApp/QuenchInside.jpg"width="1600" height="700">-->
+
+<!--</div>-->
+
+<div  class="w3-content w3-section" style="max-width:500px">
+
+
+    <img class="mySlides w3-animate-fading" src="../../static/quenchApp/QuenchInside.jpg" width="1600" height="1600">
+    <img class="mySlides w3-animate-fading" src="../../static/quenchApp/Josh.jpg" width="1600" height="1600">
+    <img class="mySlides w3-animate-fading" src="../../static/quenchApp/ProseccoDisplay.jpg" width="1600" height="1600">
+    <img class="mySlides w3-animate-fading" src="../../static/quenchApp/Santa.jpeg"width="1600" height="1600">
+
+</div>
+
+<!--</div>-->
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 5000);
+    }
+</script>
+
+<!--<script>-->
+<!--    var myIndex = 0;-->
+<!--    carousel();-->
+
+<!--    function carousel() {-->
+<!--        var i;-->
+<!--        var x = document.getElementsByClassName("mySlides1");-->
+<!--        for (i = 0; i < x.length; i++) {-->
+<!--            x[i].style.display = "none";-->
+<!--        }-->
+<!--        myIndex++;-->
+<!--        if (myIndex > x.length) {myIndex = 1}-->
+<!--        x[myIndex-1].style.display = "block";-->
+<!--        setTimeout(carousel, 5000);-->
+<!--    }-->
+<!--</script>-->
+
 
 {% endblock %}

@@ -3,12 +3,13 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .forms import Sign_Up_UserForm, Sign_In_UserForm
 from django.contrib.auth.models import User
 from .models import Cart, Product
-
 from django.contrib.auth import login, authenticate, logout
+
+
 
 def index(request):
     return render(request, 'quenchApp/index.html')
@@ -111,11 +112,17 @@ def my_cart(request):
             cart_obj.save() # _________________________________________________save new cart object
             print(cart_id, cart_obj)
     else:
-            cart_obj = Cart.objects.new(user=request.user) # __________________creating new cart object for the current user
+            cart_obj = Cart.objects.new(request,user=request.user) # __________________creating new cart object for the current user
             request.session['cart_id'] = cart_obj.id #_________________________Associate current session with the users cart for logged in user
             print(cart_id)
 
-
+#     products = cart_obj.products.all
+#     total = 0
+#     for x in products
+#         total+=x.price
+#     print(total)
+#     cart_obj.total = total
+#     cart_obj.save()
     return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
 
@@ -123,24 +130,37 @@ def my_cart(request):
 
 def cart_update(request):
 
-    product_id = request.POST.get('product_id')
+    product_id = request.POST.get('product_id')  # from the form product.id is requested
     print(product_id)
-    if product_id is not None:
+    if product_id is not None: # if this product is in inventory
         try:
-            product_obj = Product.objects.get(id=product_id)
+            product_obj = Product.objects.get(id=product_id) # grab the product_obj for product_id
         except Product.DoesNotExist:
             print("Show message to user, product is gone")
             return redirect ("my_cart")
-        cart_obj  = Cart.objects.new(request)
-        if product_obj in cart_obj.products.all():
-            cart_obj.products.remove(product_obj)
+        cart_obj  = Cart.objects.new(request,user = request.user)  # create new cart_obj
+        if product_obj in cart_obj.products.all(): # if this product is in cart
+            cart_obj.products.remove(product_obj) # remove the product from cart
+
         else:
-            cart_obj.products.add(product_obj)
-
-
+            cart_obj.products.add(product_obj) # add the product to the cart
 #               cart_obj.products.add(obj)#cart_obj.products.add(product_id)
-    return redirect ("my_cart")
+    return redirect ("my_cart") # redirects to cart
 
+#
+# def cart_update(request, pk):
+#     cart = Cart.objects.all()[0]
+#     try:
+#         product_obj = Product.objects.get(id=pk)
+#     except Product.DoesNotExist:
+#         pass
+#     except:
+#         pass
+#     if not product in cart.products.all():
+#         cart.products.add(product)
+#     else:
+#         cart.products.remove(product)
+#     return HttpResponseRedirect(reverse("/my_cart/"))
 
 
 
