@@ -116,13 +116,13 @@ def my_cart(request):
             request.session['cart_id'] = cart_obj.id #_________________________Associate current session with the users cart for logged in user
             print(cart_id)
 
-#     products = cart_obj.products.all
-#     total = 0
-#     for x in products
-#         total+=x.price
-#     print(total)
-#     cart_obj.total = total
-#     cart_obj.save()
+    products = cart_obj.products.all()
+    total = 0
+    for x in products:
+        total+=x.price
+    print(total)
+    cart_obj.total = total
+    cart_obj.save()
     return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
 
@@ -138,7 +138,8 @@ def cart_update(request):
         except Product.DoesNotExist:
             print("Show message to user, product is gone")
             return redirect ("my_cart")
-        cart_obj  = Cart.objects.new(request,user = request.user)  # create new cart_obj
+#         cart_obj  = Cart.objects.new(request,user = request.user)  # create new cart_obj
+        cart_obj  = Cart.objects.get(user = request.user)
         if product_obj in cart_obj.products.all(): # if this product is in cart
             cart_obj.products.remove(product_obj) # remove the product from cart
 
