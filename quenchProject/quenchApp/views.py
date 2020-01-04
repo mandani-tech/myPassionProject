@@ -15,6 +15,11 @@ def index(request):
     return render(request, 'quenchApp/index.html')
 
 
+
+def checkOut(request):
+    return render(request, 'quenchApp/checkOut.html')
+
+
 def home(request):
 #         print(request.session.get("first_name","unknown"))
         return render(request, 'quenchApp/home.html')
@@ -201,7 +206,7 @@ def login_my_user(request):
             loggedInUser = authenticate(username = request.POST['username'], password = request.POST["password"])
             if loggedInUser is not None:
                 login(request, loggedInUser)
-                return redirect("index")
+                return redirect("home")
             else:
                 messages.error(request, "Wrong username or password")
                 return redirect("login_my_user")
@@ -225,4 +230,4 @@ def login_my_user(request):
 
 def log_me_out(request):
     logout(request)
-    return redirect("index")
+    return redirect("home")

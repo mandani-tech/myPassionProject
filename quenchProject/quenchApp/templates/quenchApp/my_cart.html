@@ -5,8 +5,8 @@
 
 <h1 style="margin: 1%">My Cart</h1>
 
-<button style="margin: 1%"><h4>Continue Shopping</h4></button>
-<button><h4>Checkout Now</h4></button>
+<a href="{% url 'list' %}"><button style="margin: 1%"><h4>Continue Shopping</h4></button></a>
+<a href="{% url 'checkOut' %}"><button><h4>Checkout Now</h4></button></a>
 
 
 {% if cart.products is not Nonefg %}
