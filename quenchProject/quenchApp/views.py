@@ -15,14 +15,16 @@ def index(request):
     return render(request, 'quenchApp/index.html')
 
 
+def home(request):
+#         print(request.session.get("first_name","unknown"))
+        return render(request, 'quenchApp/home.html')
+
 
 def checkOut(request):
     return render(request, 'quenchApp/checkOut.html')
 
 
-def home(request):
-#         print(request.session.get("first_name","unknown"))
-        return render(request, 'quenchApp/home.html')
+
 
 
 #______________________________________Product Views_____________________
@@ -36,24 +38,6 @@ def product_list_view(request):
     return render (request,"quenchApp/list.html", context)
 
 
-#
-# class ProductDetailView():
-# #     queryset = Product.objects.all()
-#     template_name = "quenchApp/detail.html"
-
-#     def get_context_data(self,*args,**kwargs):
-#         context =super(ProductDetailView, self).get_context_data(*args,**kwargs)
-#         print(context)
-#         return (context)
-#
-#     def get_object(self,*args,**kwargs):
-#         request = self.request
-#         pk= self.kwargs.get(pk)
-#         instance = Product.objects.get(pk)
-#         if instance is None:
-#             raise Http404("Product doesn't Exits")
-#         return instance
-
 def product_detail_view(request, pk):
 #
     instance = get_object_or_404(Product, pk=pk)
@@ -66,13 +50,6 @@ def product_detail_view(request, pk):
 
     }
     return render (request,"quenchApp/detail.html", context)
-
-
-
-
-
-
-
 
 
 
@@ -99,11 +76,44 @@ def search_results(request):
 #     print('New Cart ID created')
 #     return cart_obj
 
+#
+# #
+# def my_cart(request,user=None):
+#
+#     if request.user.is_authenticated:
+#         cart_id = request.session.get("id", None)
+#         qs = Cart.objects.filter(id=cart_id)
+#         if qs.count() == 1:
+#             cart_obj = qs.first()
+#             cart_obj.user = request.user
+#             cart_obj.save()
+#             products = cart_obj.products.all()
+#             total = 0
+#             for x in products:
+#                 total+=x.price
+#             print(total)
+#             cart_obj.total = total
+#             cart_obj.save()
+#
+#             return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
+# #
+#     else:
+#         cart_obj=Cart.objects.create(user=request.user)
+#         request.session['cart_id'] = cart_obj.id
+#         print('New Cart ID created')
+#
+#
+#         products = cart_obj.products.all()
+#         total = 0
+#         for x in products:
+#             total+=x.price
+#         print(total)
+#         cart_obj.total = total
+#         cart_obj.save()
+#         return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
 
 def my_cart(request):
-#
-#     del request.session['cart_id']
     cart_id = request.session.get("cart_id", None) #_______________________ get the current cart_id  or set it to None .
     qs = Cart.objects.filter(id=cart_id) #__________________________________query set or instantiate  Cart Model  using the filter for this session
     if qs.count() == 1: #___________________________________________________ when the cart_obj is created this is the first row in the table and its count will be equal to 1
@@ -111,6 +121,7 @@ def my_cart(request):
         print('Cart ID Exits') #____________________________________________ if user clicks the my cart again the cart id already is existing for this session
         print(cart_id) # _____________________________________________________console will print this cart id for this session
         cart_obj = qs.first() # ______________________________________________cart_obj will be equal to the first row in the table and we will ignore any other rows i Cart table
+#         if cart_id :
         if request.user.is_authenticated and cart_obj.user is None:
             print (request.user)
             cart_obj.user = request.user # ____________________________________associate the cart with the logged in user
@@ -122,11 +133,24 @@ def my_cart(request):
             print(cart_id)
 
     products = cart_obj.products.all()
+    subtotal = 0
     total = 0
+    tax = 0
     for x in products:
-        total+=x.price
+        subtotal+=x.price
+    print(subtotal)
+    cart_obj.subtotal = subtotal
+
+    tax = subtotal * 975
+    print(tax)
+    tax = tax / 10000
+    print(tax)
+    total = subtotal + tax
     print(total)
-    cart_obj.total = total
+
+    cart_obj.total = round(total,2)
+    cart_obj.tax = round(tax,2)
+
     cart_obj.save()
     return render(request, 'quenchApp/my_cart.html',{"cart":cart_obj})
 
@@ -143,7 +167,12 @@ def cart_update(request):
         except Product.DoesNotExist:
             print("Show message to user, product is gone")
             return redirect ("my_cart")
-#         cart_obj  = Cart.objects.new(request,user = request.user)  # create new cart_obj
+
+        if request.user.is_authenticated:
+             cart_obj  = Cart.objects.get(user = request.user)
+        else:
+            cart_obj  = Cart.objects.new(request,user = request.user)  # create new cart_obj
+
         cart_obj  = Cart.objects.get(user = request.user)
         if product_obj in cart_obj.products.all(): # if this product is in cart
             cart_obj.products.remove(product_obj) # remove the product from cart

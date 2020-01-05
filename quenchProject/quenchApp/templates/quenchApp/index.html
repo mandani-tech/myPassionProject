@@ -18,8 +18,11 @@
     <div id="topleft">
 <!--    <h1 class="fa-file-text">QUENCH</h1>-->
 <!--    <h2 class="fa-file-text">Wine & Spirits</h2>-->
-        <img id="mainImg" src="../../static/quenchApp/logo_large-01-01.png" height="140" width="140"/>
+        <img id="mainImg" src="../../static/quenchApp/logo_large-01-01.png" height="170" width="370"/>
 
+    </div>
+    <div>
+<!--        <h3>We are a locally boutique owned in the heart of Memphis downtown!</h3>-->
     </div>
     {% if user.is_authenticated %} {#________________________Logged In User Authentication _______________________#}
     <div id="topRight">
@@ -30,8 +33,8 @@
 
         <form class="searchbar" action="/search_results/" method="get">
             <label  for="search1"> </label>
-            <input class="input-lg" id="search1" type="text"  placeholder="Search" name="q"  >
-            <a href="/search_result/"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
+            <input style="color: darkblue" class="input-lg" id="search1" type="text"  placeholder="Search your spirit !!!" name="q"  >
+            <a href="/search_results/"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
         </form>
 
 
@@ -46,7 +49,7 @@
 <!--            <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>-->
             <form class="searchbar" action="/search_results" method="get">
                 <label  for="search2"> </label>
-                <input class="input-lg" id="search2" type="text"  placeholder="Search" name="q"  >
+                <input style="color: darkblue" class="input-lg" id="search2" type="text"  placeholder="Search your spirit!!!" name="q" >
                 <a href="/search_result"><img   src="../../static/quenchApp/585e4ae1cb11b227491c3393.png" height="20px"></a>
             </form>
     </div>
@@ -67,6 +70,8 @@
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu"><a class="test" tabindex="-1" href="#">RED WINE<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+
+
                                 <li><a tabindex="-1" href="#">CABERNET SAUVIGNON</a></li>
                                 <li><a tabindex="-1" href="#">PINOT NOIR</a></li>
                                 <li><a tabindex="-1" href="#">MERLOT</a></li>

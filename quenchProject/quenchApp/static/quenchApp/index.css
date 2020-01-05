@@ -1,16 +1,20 @@
 
 html{
-    background: lightgrey;
+    background: whitesmoke;
+    padding: 1%;
 }
 
 
 #container{
+    background: black;
     display: grid;
+    color: white;
     grid-template-columns: repeat(4,1fr);
 }
 
 #topleft{
-    margin: 5%;
+    margin:2%;
+    grid-column: 1;
 }
 
 #topRight{

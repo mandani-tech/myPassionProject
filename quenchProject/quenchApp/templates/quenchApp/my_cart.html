@@ -22,14 +22,26 @@
 </thead>
 <tfoot>
 <tr>
+    <td><h3>Sub-Total :</h3></td>
+<td><h3 style="margin: 1%"> ${{ cart.subtotal }}</h3></td>
 <td></td>
-<td><h3 style="margin: 1%">Total: ${{ cart.total }}</h3></td>
 </tr>
+<tr><td><h3>Sales-Tax 9.75 % :</h3></td>
+    <td><h3 style="margin: 1%"> ${{ cart.tax }}</h3></td>
+    <td></td>
+
+</tr>
+<tr><td><h3>Total :</h3></td>
+    <td><h3 style="margin: 1%"> ${{ cart.total }}</h3></td>
+    <td></td>
+
+</tr>
+
 </tfoot>
 {% for product in cart.products.all %}
 <tr><td style="width: 65%"><a href="{% url 'detail' product.pk %}"><h3>{{ product.itemName }}</h3></a></td>
 
-<td style="width: 15%"><h3>Price: ${{ product.price }}</h3></td>
+<td style="width: 15%"><h3>${{ product.price }}</h3></td>
 <td style="width: 15%">{% if object.image != '' %}<img src="{{ product.image.url }}" alt="img" width="15"/><br/>{% endif %}</td></tr>
 
     {% endfor %}
@@ -48,3 +60,6 @@
 
 
 {% endblock %}
+
+
+
