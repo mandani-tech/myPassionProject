@@ -9,7 +9,7 @@
 <a href="{% url 'checkOut' %}"><button><h4>Checkout Now</h4></button></a>
 
 
-{% if cart.products is not Nonefg %}
+{% if cart.products is not None %}
 <h3 style="margin: 1%">Cart ID :{{ cart.id }}</h3>
 <h3 class="text-capitalize" style="margin: 1%"> Hi, {{ cart.user }}</h3>
 

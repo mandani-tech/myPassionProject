@@ -30,7 +30,7 @@
         </td>
 
 
-
+         {% if user.is_authenticated %}
         <td>
             <form action="{% url 'cart_update'  %}" method="POST">
                 {% csrf_token %}
@@ -42,11 +42,16 @@
                 <h3><button class="btn-danger">Remove</button></h3>
 
                 {% else %}
-                <h3><button class="btn-danger">Add to cart</button></h3>
+                <h3><button class="btn-danger">Add to cart/ Remove</button></h3>
 
                 {% endif %}
             </form>
         </td>
+        {% else %}
+        <td>
+
+        </td>
+        {% endif %}
 
 
 

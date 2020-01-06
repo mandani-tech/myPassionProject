@@ -6,7 +6,6 @@ from django.utils import timezone
 # Create your models here.
 
 
-
 class ProductManager(models.Manager):
     def get_by_id(self, id):
         qs=self.objects.id
@@ -31,12 +30,18 @@ class Product(models.Model):
     def __str__(self):
             return str(self.itemName)
 
-
-
-
 class CartManager(models.Manager):
-    def get_user_obj():
-        return user_obj
+    def get_by_id(self, id):
+        qs=self.objects.id
+        print(qs)
+        if qs.count()==1:
+            return qs.first()
+        return None #Todo fix this to show all the products objects
+
+#
+# class CartManager(models.Manager):
+#     def get_user_obj():
+#         return user_obj
 
     def new(self,request,user=None,):
         print(user)
