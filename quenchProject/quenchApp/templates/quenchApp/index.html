@@ -27,9 +27,9 @@
     {% if user.is_authenticated %} {#________________________Logged In User Authentication _______________________#}
     <div id="topRight">
 <!--        <h4>Hello, <a  href="/login_my_user/">Sign in</a></h4>-->
-        <h4 class="text-capitalize"> Hi, {{ request.user }}
-        <a  href="/log_me_out/">Sign Out</a></h4>
-        <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>
+        <h3 class="text-capitalize"> Hi, {{ request.user }}
+        <a  href="/log_me_out/">Sign Out</a></h3>
+        <a href="/my_cart/"><h3>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h3></a>
 
         <form class="searchbar" action="/search_results/" method="get">
             <label  for="search1"> </label>
@@ -47,8 +47,8 @@
     {% else %}
 
         <div id="topRight2">
-            <h4>Hi, <a  href="/login_my_user/">Sign in</a></h4>
-                    <h4><a  href="/new_user/">Not already a member? Sign Up</a></h4>
+            <h3>Hi, <a  href="/login_my_user/">Sign in</a></h3>
+                    <h3><a  href="/new_user/">Not already a member? Sign Up</a></h3>
 <!--            <a href="/my_cart/"><h4>My Cart<img src="../../static/quenchApp/ShoppingCart.png" alt="" height="50"></h4></a>-->
             <form class="searchbar" action="/search_results/" method="get">
                 <label  for="search2"> </label>
